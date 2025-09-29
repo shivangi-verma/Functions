@@ -295,14 +295,67 @@ BONUS TEST DATA 2: [1, 5, 3, 9, 6, 1]
 GOOD LUCK 😀
 */
 
+console.log(
+  '--------------------------Coding Challenge 1--------------------------'
+);
+
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
   answers: new Array(4).fill(0),
   registerNewAnswer() {
-    window.prompt(
+    const ans = prompt(
       `${this.question} \n${this.options.join('\n')} \n(Write option number)`
     );
+    return ans;
+  },
+  displayResults(type = 'array') {
+    if (type == 'string') {
+      console.log(`Poll results are ${[...this.answers]}`);
+    } else if (type == 'array') {
+      console.log(`${this.answers}`);
+    } else {
+      console.log(`pta nhi kya chal rha hai ${type}  `);
+    }
   },
 };
-poll.registerNewAnswer();
+
+// let userAnswer =  Number(poll.registerNewAnswer());
+
+document.querySelector('.poll').addEventListener('click', () => {
+  const userAnswer = Number(poll.registerNewAnswer());
+  if (userAnswer >= 0 && userAnswer <= 3) {
+    poll.answers[userAnswer] += 1;
+    console.log(poll.answers);
+    poll.displayResults('string');
+  } else {
+    window.alert(`INVALID ANSWER: Enter a valid answer`);
+  }
+});
+
+const testData = {
+  testData1: [5, 2, 3],
+  testData2: [1, 5, 3, 9, 6, 1],
+};
+
+const displayNew = poll.displayResults.bind(testData);
+console.log(displayNew);
+
+// if (userAnswer >= 0 && userAnswer <= 3) {
+//   console.log(typeof userAnswer);
+
+//   console.log(`ARRAY: ${(poll.answers[userAnswer] += 1)}`);
+//   console.log(poll.answers);
+// } else {
+//   window.alert(`INVALID ANSWER: Enter a valid answer`);
+// }
+
+// poll.registerNewAnswer();
+// const answerByUser = poll.registerNewAnswer();
+// console.log(` answerByUser ${poll.registerNewAnswer()}`);
+
+// const prompted = prompt('hey cute number');
+// console.log(prompted);
+
+// const num = [1, 2, 3];
+// console.log(Array.isArray(num));
