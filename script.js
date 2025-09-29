@@ -338,8 +338,11 @@ const testData = {
   testData2: [1, 5, 3, 9, 6, 1],
 };
 
-const displayNew = poll.displayResults.bind(testData);
-console.log(displayNew);
+const displayNew1 = poll.displayResults.bind({ answers: [5, 2, 3] });
+displayNew1();
+
+const displayNew2 = poll.displayResults.bind({ answers: [1, 5, 3, 9, 6, 1] });
+displayNew2();
 
 // if (userAnswer >= 0 && userAnswer <= 3) {
 //   console.log(typeof userAnswer);
