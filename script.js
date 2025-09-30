@@ -333,10 +333,10 @@ document.querySelector('.poll').addEventListener('click', () => {
   }
 });
 
-const testData = {
-  testData1: [5, 2, 3],
-  testData2: [1, 5, 3, 9, 6, 1],
-};
+// const testData = {
+//   testData1: [5, 2, 3],
+//   testData2: [1, 5, 3, 9, 6, 1],
+// };
 
 const displayNew1 = poll.displayResults.bind({ answers: [5, 2, 3] });
 displayNew1();
@@ -362,3 +362,69 @@ displayNew2();
 
 // const num = [1, 2, 3];
 // console.log(Array.isArray(num));
+
+// IIFE IMMEDIATELY INVOKING FUNCTION EXPRESSION
+console.log(`------------------------------IIFE ------------------------`);
+
+function runOnce() {
+  console.log(`This is run once function `);
+}
+
+runOnce();
+
+(() => console.log(`😉😉😉`))();
+(function () {
+  console.log(`This is IIFE! 🔴`);
+})();
+
+// CLOSURES
+console.log(`------------------------------CLOSURES------------------------`);
+
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers`);
+  };
+};
+
+const booker = secureBooking();
+
+booker();
+booker();
+booker();
+
+let f;
+
+const g = function () {
+  const a = 4;
+  f = function () {
+    console.log(a * 2);
+  };
+};
+
+g();
+f();
+
+const h = function () {
+  const b = 3;
+  f = function () {
+    console.log(b * 3);
+  };
+};
+
+h();
+f();
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers! 🎊`);
+    console.log(`There are 3 groups each with ${perGroup} passengers! 🎊`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds! `);
+};
+
+boardPassengers(15, 2 );
